@@ -197,9 +197,16 @@ const resetPassword = lazy(() =>
 const sellerSubscription = lazy(() =>
   import("./views/apps/sellerSubs/SellerSubscription")
 );
+
+// Soxypay pages
 const walletPage = lazy(() => import("./views/apps/walletPage/WalletPage"));
 const deposit = lazy(() => import("./views/apps/walletPage/Deposit"));
 const depositForm = lazy(() => import("./views/apps/walletPage/DepositForm"));
+const DepositEdForm = lazy(() => import("./views/apps/walletPage/DepositEdForm"));
+const AddDeposit = lazy(() => import("./views/apps/walletPage/AddDposit"));
+
+
+
 const withdrawalRequest = lazy(() =>
   import("./views/apps/walletPage/withdrawalRequest")
 );
@@ -579,8 +586,12 @@ class AppRouter extends React.Component {
             path="/app/sellerSubs/sellerSubscription"
             component={sellerSubscription}
           />
+          {/* route soxypay pages */}
+
           <AppRoute path="/apps/walletPage/walletPage" component={walletPage} />
           <AppRoute path="/apps/walletPage/deposit" component={deposit} />
+          <AppRoute path="/apps/walletPage/depositedform" component={DepositEdForm} />
+          <AppRoute path="/apps/walletPage/adddeposit" component={AddDeposit} />
           <AppRoute
             path="/apps/walletPage/depositForm"
             component={depositForm}

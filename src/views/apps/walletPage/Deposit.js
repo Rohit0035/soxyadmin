@@ -12,16 +12,15 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
-import { history } from "../../.././history";
+// import { history } from "../../.././history";
 import axios from "axios";
-
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { Link } from "react-router-dom";
 
 class Deposit extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -34,92 +33,129 @@ class Deposit extends React.Component {
     columnDefs: [
       {
         headerName: "UserName",
-        field: "firstname",
+        field: "customer.firstname",
         width: 175,
         filter: true,
-        checkboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        headerCheckboxSelection: true,
-      },
-      {
-        headerName: "UserId",
-        field: "UserId",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
-      //   {
-      //     headerName: "Email",
-      //     field: "email",
-      //     filter: true,
-      //     width: 250,
-      //     pinned: window.innerWidth > 992 ? "left" : false,
-      //   },
-      {
-        headerName: "Date",
-        field: "Date",
-        filter: true,
-        width: 250,
-      },
-      {
-        headerName: "Email",
-        field: "Email",
-        filter: true,
-        width: 150,
-      },
-      {
-        headerName: "Phone Number",
-        field: "Number",
-        filter: true,
-        width: 150,
-      },
-      {
-        headerName: "HashTag",
-        field: "HashTag",
-        filter: true,
-        width: 125,
-      },
-      {
-        headerName: "Payment Method",
-        field: "Payment Method",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
-      {
-        headerName: "Image ",
-        field: "image",
-        filter: true,
-        width: 120,
-        cellRendererFramework: params => {
+        cellRendererFramework: (params) => {
           return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <img
-                className="rounded-circle"
-                src={params.data.image}
-                alt="user"
-                height="45"
-                width="90"
-              />
+            <div>
+              <span>{params.data.customer?.firstname} {params.data.customer?.lastname} </span>
+              
             </div>
           );
         },
       },
       {
-        headerName: "Status",
-        field: "status",
-        filter: true,
-        width: 150,
-        cellRendererFramework: params => {
-          return params.value === "Active" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.status}
+        headerName: "UserId",
+        field: "customer.customerId",
+        filter: "true",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.customer?.customerId}</span>
             </div>
-          ) : params.value === "Inactive" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.status}
-            </div>
-          ) : null;
+          );
         },
       },
+
+      // {
+      //   headerName: "Date",
+      //   field: "Date",
+      //   filter: true,
+      //   width: 250,
+      // },
+      {
+        headerName: "Email",
+        field: "customer.email",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.customer?.email}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Phone Number",
+        field: "customer.mobile",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.customer?.mobile}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "HashTag",
+        field: "amount",
+        filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.amount}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Payment Method",
+        field: "pay_method",
+        filter: "true",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.pay_method}</span>
+            </div>
+          );
+        },
+      },
+      
+      {
+          headerName: "Image",
+          field: "depsite_file",
+          filter: false,
+          width: 200,
+          setColumnVisible: false,
+          cellRendererFramework: (params) => {
+            return (
+              <div className="d-flex align-items-center cursor-pointer">
+                
+                <img
+                  className=" rounded-circle  mr-3"
+                  src= {params.data.depsite_file}
+                  alt="user avatar"
+                  height="40"
+                  width="40"
+                /> 
+              </div>
+            );
+          },
+        },
+        {
+          headerName: "Status",
+          field: "status",
+          filter: true,
+          width: 150,
+          cellRendererFramework: (params) => {
+            return params.value === "Success" ? (
+              <div className="badge badge-pill badge-success">
+                {params.data.status}
+              </div>
+            ) : params.value === "Pending" ? (
+              <div className="badge badge-pill badge-warning">
+                {params.data.status}
+              </div>
+            ) : null;
+          },
+        },
       {
         headerName: "Actions",
         field: "transactions",
@@ -129,24 +165,24 @@ class Deposit extends React.Component {
             <div className="actions cursor-pointer">
               <Eye
                 className="mr-50"
-                size={20}
-                onClick={() => history.push("/apps/walletPage/depositForm")}
+                size="25px"
+                color="green"
+                // onClick={() => history.push("/apps/walletPage/depositForm")}
               />
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() =>
-                //   history.push(`/app/seller/editSeller/${params.data._id}`)
-                // }
+              
               />
               <Trash2
-                size={20}
-                // onClick={() => {
-                //   let selectedData = this.gridApi.getSelectedRows();
-                //   this.runthisfunction(params.data._id);
-                //   this.gridApi.updateRowData({ remove: selectedData });
-                // }}
+                size="25px"
+                color="red"
+                onClick={() => {
+                  let selectedData = this.gridApi.getSelectedRows();
+                  this.runthisfunction(params.data._id);
+                  this.gridApi.updateRowData({ remove: selectedData });
+                 }}
               />
             </div>
           );
@@ -156,9 +192,10 @@ class Deposit extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("/api/aggrid/data").then(response => {
+    axios.get("http://35.154.134.118/api/admin/getwallet").then((response) => {
       let rowData = response.data.data;
-      JSON.stringify(rowData);
+      // JSON.stringify(rowData);
+      console.log(rowData);
       this.setState({ rowData });
     });
   }
@@ -192,11 +229,21 @@ class Deposit extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Wallet Table"
+          breadCrumbTitle="Deposit List"
           //   breadCrumbParent="Forms & Tables"
-          breadCrumbActive="Wallet Table"
+          breadCrumbActive="Wallet "
         />
         <Card className="overflow-hidden agGrid-card">
+                  <div className="dpadd p-2">
+                      <Link to="adddeposit">
+                      <Button
+                        className=" btn btn-success float-right"
+                     
+                      >
+                        Add
+                      </Button>
+                      </Link>
+                  </div>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -253,7 +300,7 @@ class Deposit extends React.Component {
                         value={this.state.value}
                       />
                     </div>
-                    <div className="export-btn">
+                     <div className="export-btn">
                       <Button.Ripple
                         color="primary"
                         onClick={() => this.gridApi.exportDataAsCsv()}
