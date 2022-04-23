@@ -89,7 +89,7 @@ class Checkout extends React.Component {
                       </div>
                       <div className="cart">
                         <Heart size={15} />
-                        <span className="align-middle ml-25">Wishlist</span>
+                        <span className="align-middle ml-25">Wishlists</span>
                       </div>
                     </div>
                   </div>
