@@ -11,8 +11,8 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Edit, Eye, Trash2 } from "react-feather";
-// import { history } from "../../.././history";
+import { ChevronDown, Edit, Eye, Plus, PlusCircle, Trash2 } from "react-feather";
+import { history } from "../../.././history";
 import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
@@ -169,11 +169,13 @@ class Deposit extends React.Component {
                 color="green"
                 // onClick={() => history.push("/apps/walletPage/depositForm")}
               />
-              <Edit
+              <PlusCircle
                 className="mr-50"
                 size="25px"
                 color="blue"
-              
+                onClick={() =>
+                   history.push(`/app/walletPage/adddeposit/${params.data._id}`)}
+                  //  history.push(`/app/walletPage/adddeposit`)}
               />
               <Trash2
                 size="25px"

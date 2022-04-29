@@ -18,7 +18,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Link } from "react-router-dom";
 
-class Recharg extends React.Component {
+class Deposit extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -35,7 +35,7 @@ class Recharg extends React.Component {
         headerName: "UserName",
         field: "walletId.customer.firstname",
         width: 175,
-        // filter: true,
+        filter: true,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -48,7 +48,7 @@ class Recharg extends React.Component {
       {
         headerName: "UserId",
         field: "walletId.customer.customerId",
-        // filter: "true",
+        filter: "true",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -68,7 +68,7 @@ class Recharg extends React.Component {
       {
         headerName: "Email",
         field: "customer.email",
-        // filter: true,
+        filter: true,
         width: 150,
         cellRendererFramework: (params) => {
           return (
@@ -81,7 +81,7 @@ class Recharg extends React.Component {
       {
         headerName: "Phone Number",
         field: "walletId.customer.mobile",
-        // filter: true,
+        filter: true,
         width: 150,
         cellRendererFramework: (params) => {
           return (
@@ -94,7 +94,7 @@ class Recharg extends React.Component {
       {
         headerName: "HashTag",
         field: "amount",
-        // filter: true,
+        filter: true,
         width: 125,
         cellRendererFramework: (params) => {
           return (
@@ -107,7 +107,7 @@ class Recharg extends React.Component {
       {
         headerName: "Payment Method",
         field: "walletId.pay_method",
-        // filter: "true",
+        filter: "true",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -121,7 +121,7 @@ class Recharg extends React.Component {
       {
           headerName: "Image",
           field: "walletId.depsite_file",
-          // filter: false,
+          filter: false,
           width: 200,
           setColumnVisible: false,
           cellRendererFramework: (params) => {
@@ -142,7 +142,7 @@ class Recharg extends React.Component {
         {
           headerName: "Status",
           field: "status",
-          // filter: true,
+          filter: true,
           width: 150,
           cellRendererFramework: (params) => {
             return params.value === "Success" ? (
@@ -337,4 +337,4 @@ class Recharg extends React.Component {
     );
   }
 }
-export default Recharg;
+export default Deposit;

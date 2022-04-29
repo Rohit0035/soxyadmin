@@ -204,6 +204,7 @@ const deposit = lazy(() => import("./views/apps/walletPage/Deposit"));
 const depositForm = lazy(() => import("./views/apps/walletPage/DepositForm"));
 const DepositEdForm = lazy(() => import("./views/apps/walletPage/DepositEdForm"));
 const AddDeposit = lazy(() => import("./views/apps/walletPage/AddDposit"));
+const TransactionList = lazy(() => import("./views/apps/walletPage/TransactionList"));
 
 
 
@@ -588,33 +589,37 @@ class AppRouter extends React.Component {
           />
           {/* route soxypay pages */}
 
-          <AppRoute path="/apps/walletPage/walletPage" component={walletPage} />
-          <AppRoute path="/apps/walletPage/deposit" component={deposit} />
-          <AppRoute path="/apps/walletPage/depositedform" component={DepositEdForm} />
-          <AppRoute path="/apps/walletPage/adddeposit" component={AddDeposit} />
+          <AppRoute path="/app/walletPage/walletPage" component={walletPage} />
+          <AppRoute path="/app/walletPage/deposit" component={deposit} />
+          <AppRoute path="/app/walletPage/depositedform" component={DepositEdForm} />
+          <AppRoute path="/app/walletPage/adddeposit" component={AddDeposit} />
           <AppRoute
-            path="/apps/walletPage/depositForm"
+            path="/app/walletPage/depositForm"
             component={depositForm}
           />
+           <AppRoute
+            path="/app/walletPage/transactionlist"
+            component={TransactionList}
+          />
           <AppRoute
-            path="/apps/walletPage/withdrawalRequest"
+            path="/app/walletPage/withdrawalRequest"
             component={withdrawalRequest}
           />
-          <AppRoute path="/apps/services/recharg" component={recharg} />
-          <AppRoute path="/apps/services/dthRecharg" component={dthRecharg} />
-          <AppRoute path="/apps/services/electricity" component={electricity} />
-          <AppRoute path="/apps/services/bookGas" component={bookGas} />
-          <AppRoute path="/apps/services/creditCard" component={creditCard} />
-          <AppRoute path="/apps/services/broadband" component={broadband} />
-          <AppRoute path="/apps/services/waterBill" component={waterBill} />
-          <AppRoute path="/apps/services/fasTag" component={fasTag} />
-          <AppRoute path="/apps/services/cabletv" component={cabletv} />
+          <AppRoute path="/app/services/recharg" component={recharg} />
+          <AppRoute path="/app/services/dthRecharg" component={dthRecharg} />
+          <AppRoute path="/app/services/electricity" component={electricity} />
+          <AppRoute path="/app/services/bookGas" component={bookGas} />
+          <AppRoute path="/app/services/creditCard" component={creditCard} />
+          <AppRoute path="/app/services/broadband" component={broadband} />
+          <AppRoute path="/app/services/waterBill" component={waterBill} />
+          <AppRoute path="/app/services/fasTag" component={fasTag} />
+          <AppRoute path="/app/services/cabletv" component={cabletv} />
           <AppRoute
-            path="/apps/services/hospitalBill"
+            path="/app/services/hospitalBill"
             component={hospitalBill}
           />
           <AppRoute
-            path="/apps/services/municipality"
+            path="/app/services/municipality"
             component={municipality}
           />
           <AppRoute path="/app/sellerSubs/addSub" component={addSub} />

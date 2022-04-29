@@ -11,12 +11,42 @@ import {
   FormGroup,
 } from "reactstrap";
 import { history } from "../../../history";
-import axiosConfig from "../../../axiosConfig";
+import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import Select from "../../forms/form-elements/select/Select";
+import swal from 'sweetalert';
 
 export class AddDeposit extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstname:"",
+      customer: "626241c9d9f8fb7441b86dd1",
+     
+      amount:"",   
+      status: ""
+      
+    };
+  }
  
+  changeHandler1 = (e) => {
+    this.setState({ status: e.target.value });
+  };
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  submitHandler = (e) => {
+    e.preventDefault();
+    axios.post("http://35.154.134.118/api/admin/addAmount", this.state)
+    .then((response) => {
+    console.log(response);
+    swal("Successful!", "You clicked the button!", "success");
+    this.props.history.push("/app/walletPage/deposit");
+  })
+    .catch((error) => {
+      console.log(error);
+    });
+  };
  
     
   render() {
@@ -26,20 +56,19 @@ export class AddDeposit extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Add  Deposit 
+                Add  wallet 
               </h1>
             </Col>
             <Col>
               <Button
                 className=" btn btn-danger float-right"
-               
               >
                 Back
               </Button>
             </Col>
           </Row>
           <CardBody>
-            <Form className="m-1">
+          <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
                 <Col lg="6" md="6">
                   <FormGroup>
@@ -55,12 +84,15 @@ export class AddDeposit extends Component {
                   <FormGroup>
                     <Label>User Name</Label>
                     <Input
+                    name="firstname"
                       type="text"
-                      placeholder="User Name"
-                    />
+                      placeholder="Enter Name" 
+                    value={this.state.firstname}
+                    onChange={this.changeHandler}/>
                   </FormGroup>
                 </Col>
-                <Col lg="6" md="6">
+                
+                {/* <Col lg="6" md="6">
                   <FormGroup>
                     <Label>User Email</Label>
                     <Input
@@ -79,18 +111,24 @@ export class AddDeposit extends Component {
                      
                     />
                   </FormGroup>
+                </Col> */}
+                
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                <FormGroup>
+                <Label>HashTag (Amount)</Label>
+
+                  <Input   
+                    required 
+                    type="text" 
+                    name="amount"
+                    placeholder="Enter Amount" 
+                    value={this.state.amount}
+                    onChange={this.changeHandler}/>
+                    </FormGroup>
                 </Col>
-                <Col lg="6" md="6">
-                  <FormGroup>
-                    <Label>HashTag (Amount)</Label>
-                    <Input
-                      type="number"
-                      placeholder="HashTag"
-                     
-                    />
-                  </FormGroup>
-                </Col>
-                <Col lg="6" md="6">
+                 
+                
+                {/* <Col lg="6" md="6">
                   <FormGroup>
                     <Label>Payment Methode</Label>
                     <Input type="select" name="select" id="exampleSelect">
@@ -99,7 +137,7 @@ export class AddDeposit extends Component {
                         <option>TRX</option>
                    </Input>
                   </FormGroup>
-                </Col>
+                </Col> */}
               
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <FormGroup>
