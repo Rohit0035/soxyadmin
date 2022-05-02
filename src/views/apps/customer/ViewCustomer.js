@@ -148,7 +148,7 @@ class ViewCustomer extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
     axios
-      .get(`http://35.154.86.59/api/user/view_onecust/${id}`)
+      .get(`http://35.154.134.118/api/user/view_onecust/${id}`)
       
       .then(response => {
         

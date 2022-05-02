@@ -43,7 +43,7 @@ class RegisterJWT extends React.Component {
       submitHandler = (e) => {
         e.preventDefault();
       
-        axios.post("/35.154.86.59/api/admin/seller_signup", this.state)
+        axios.post("/35.154.134.118/api/admin/seller_signup", this.state)
           .then((response) => {
             console.log(response);  
              alert("Seller Added Successful")

@@ -66,7 +66,7 @@ class EditProfile extends Component {
     }
     let { id } = this.props.match.params;
     axios
-      .post(`http://35.154.86.59/api/admin/editadmin/${id}`, data)
+      .post(`http://35.154.134.118/api/admin/editadmin/${id}`, data)
       .then((response) => {
         console.log(response.data);
       })

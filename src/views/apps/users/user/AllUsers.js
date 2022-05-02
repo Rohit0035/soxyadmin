@@ -191,7 +191,7 @@ class AllUsers extends React.Component {
 
   async componentDidMount() {
     await axios
-    .get("http://35.154.86.59/api/user/alluser")
+    .get("http:///api/user/alluser")
     .then((response) => {
         let rowData = response.data.data;
         this.setState({ rowData });
@@ -203,7 +203,7 @@ class AllUsers extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await 
-    axios.get(`http://35.154.86.59/api/user/deleteuser/${id}`)
+    axios.get(`http://35.154.134.118/api/user/deleteuser/${id}`)
       .then((response) => {
         console.log(response);
       });

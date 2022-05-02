@@ -174,7 +174,7 @@ componentDidMount() {
     //   console.log(key);
     // }
     axiosConfig
-      .post(" http://35.154.86.59/api/admin/addproduct", data)
+      .post(" http://35.154.134.118/api/admin/addproduct", data)
       .then((response) => {
         console.log(response.data);
       })

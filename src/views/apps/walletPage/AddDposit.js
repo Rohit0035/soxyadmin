@@ -21,7 +21,7 @@ export class AddDeposit extends Component {
     super(props);
     this.state = {
       firstname:"",
-      customer: "626241c9d9f8fb7441b86dd1",
+      walletId: "",
      
       amount:"",   
       status: ""
@@ -71,13 +71,17 @@ export class AddDeposit extends Component {
           <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
                 <Col lg="6" md="6">
+              
                   <FormGroup>
-                    <Label>User Id</Label>
+                  <Label>User Id</Label>
+                    
                     <Input
-                      type="number"
+                    name="walletId"
+                      type="text"
                       placeholder="User Id"
-                     
-                    />
+
+                    value={this.state.walletId}
+                    onChange={this.changeHandler}/>
                   </FormGroup>
                 </Col>
                 <Col lg="6" md="6">
