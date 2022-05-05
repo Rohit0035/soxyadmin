@@ -17,6 +17,7 @@ import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 class Recharg extends React.Component {
   state = {
@@ -31,6 +32,19 @@ class Recharg extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
+      {
+        headerName: "Transaction ID",
+        field: "agent_id",
+        width: 175,
+        // filter: true,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+             <span>{params.data.agent_id}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "UserName",
         field: "walletId.customer.firstname",
@@ -65,19 +79,18 @@ class Recharg extends React.Component {
       //   filter: true,
       //   width: 250,
       // },
-      {
-        headerName: "Email",
-        field: "customer.email",
-        // filter: true,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.walletId?.customer?.email}</span>
-            </div>
-          );
-        },
-      },
+      // {
+      //   headerName: "Email",
+      //   field: "customer.email",
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.walletId?.customer?.email}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
         headerName: "Phone Number",
         field: "walletId.customer.mobile",
@@ -91,6 +104,35 @@ class Recharg extends React.Component {
           );
         },
       },
+
+      {
+        headerName: "Services",
+        field: "services",
+        // filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.services}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Operator",
+        field: "operator",
+        // filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.operator}</span>
+            </div>
+          );
+        },
+      },
+
       {
         headerName: "HashTag",
         field: "amount",
@@ -104,41 +146,54 @@ class Recharg extends React.Component {
           );
         },
       },
+
       {
-        headerName: "Payment Method",
-        field: "walletId.pay_method",
-        // filter: "true",
-        width: 140,
+        headerName: "Date",
+        field: "createdAt",
+        // filter: true,
+        width: 125,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.walletId?.pay_method}</span>
+              <span>{moment(this.state.data?.createdAt).format("ll")}</span>
             </div>
           );
         },
       },
+      // {
+      //   headerName: "Payment Method",
+      //   field: "walletId.pay_method",
+      //   width: 140,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.walletId?.pay_method}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       
-      {
-          headerName: "Image",
-          field: "walletId.depsite_file",
-          // filter: false,
-          width: 200,
-          setColumnVisible: false,
-          cellRendererFramework: (params) => {
-            return (
-              <div className="d-flex align-items-center cursor-pointer">
+      // {
+      //     headerName: "Image",
+      //     field: "walletId.depsite_file",
+         
+      //     width: 200,
+      //     setColumnVisible: false,
+      //     cellRendererFramework: (params) => {
+      //       return (
+      //         <div className="d-flex align-items-center cursor-pointer">
                 
-                <img
-                  className=" rounded-circle  mr-3"
-                  src= {params.data.walletId?.depsite_file}
-                  alt="user avatar"
-                  height="40"
-                  width="40"
-                /> 
-              </div>
-            );
-          },
-        },
+      //           <img
+      //             className=" rounded-circle  mr-3"
+      //             src= {params.data.walletId?.depsite_file}
+      //             alt="user avatar"
+      //             height="40"
+      //             width="40"
+      //           /> 
+      //         </div>
+      //       );
+      //     },
+      //   },
         {
           headerName: "Status",
           field: "status",
@@ -192,7 +247,9 @@ class Recharg extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://35.154.134.118/api/admin/gettransaction").then((response) => {
+    //  let { id } = this.props.match.params;
+
+    axios.get(`http://35.154.134.118/api/admin/gettransaction`).then((response) => {
       let rowData = response.data.data;
       // JSON.stringify(rowData);
       console.log(rowData);
@@ -234,7 +291,7 @@ class Recharg extends React.Component {
           breadCrumbActive="Wallet "
         />
         <Card className="overflow-hidden agGrid-card">
-                  <div className="dpadd p-2">
+                   {/* <div className="dpadd p-2">
                       <Link to="adddeposit">
                       <Button
                         className=" btn btn-success float-right"
@@ -243,7 +300,7 @@ class Recharg extends React.Component {
                         Add
                       </Button>
                       </Link>
-                  </div>
+                  </div> */}
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

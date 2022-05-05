@@ -105,6 +105,19 @@ class Deposit extends React.Component {
         },
       },
       {
+        headerName: "Add Amount",
+        field: "amount",
+        filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.amount}</span>
+            </div>
+          );
+        },
+      },
+      {
         headerName: "Payment Method",
         field: "pay_method",
         filter: "true",
@@ -236,7 +249,7 @@ class Deposit extends React.Component {
           breadCrumbActive="Wallet "
         />
         <Card className="overflow-hidden agGrid-card">
-                  <div className="dpadd p-2">
+                  {/* <div className="dpadd p-2">
                       <Link to="adddeposit">
                       <Button
                         className=" btn btn-success float-right"
@@ -245,7 +258,7 @@ class Deposit extends React.Component {
                         Add
                       </Button>
                       </Link>
-                  </div>
+                  </div> */}
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
