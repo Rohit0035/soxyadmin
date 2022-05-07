@@ -39,7 +39,7 @@ class Deposit extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.customer?.firstname} {params.data.customer?.lastname} </span>
+              <span>{params.data.walletId?.customer?.firstname} {params.data.walletId?.customer?.lastname} </span>
               
             </div>
           );
@@ -53,7 +53,7 @@ class Deposit extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.customer?.customerId}</span>
+              <span>{params.data.walletId?.customer?.customerId}</span>
             </div>
           );
         },
@@ -73,7 +73,7 @@ class Deposit extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.customer?.email}</span>
+              <span>{params.data.walletId?.customer?.email}</span>
             </div>
           );
         },
@@ -86,33 +86,33 @@ class Deposit extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.customer?.mobile}</span>
+              <span>{params.data.walletId?.customer?.mobile}</span>
             </div>
           );
         },
       },
       {
         headerName: "HashTag",
-        field: "amount",
+        field: "walletId.amount",
         filter: true,
         width: 125,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.amount}</span>
+              <span>{params.data.walletId?.amount}</span>
             </div>
           );
         },
       },
       {
         headerName: "Add Amount",
-        field: "amount",
+        field: "add_amount",
         filter: true,
         width: 125,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.amount}</span>
+              <span>{params.data.add_amount}</span>
             </div>
           );
         },
@@ -125,7 +125,7 @@ class Deposit extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.pay_method}</span>
+              <span>{params.data.walletId?.pay_method}</span>
             </div>
           );
         },
@@ -143,7 +143,7 @@ class Deposit extends React.Component {
                 
                 <img
                   className=" rounded-circle  mr-3"
-                  src= {params.data.depsite_file}
+                  src= {params.data.walletId?.depsite_file}
                   alt="user avatar"
                   height="40"
                   width="40"
@@ -152,23 +152,23 @@ class Deposit extends React.Component {
             );
           },
         },
-        {
-          headerName: "Status",
-          field: "status",
-          filter: true,
-          width: 150,
-          cellRendererFramework: (params) => {
-            return params.value === "Success" ? (
-              <div className="badge badge-pill badge-success">
-                {params.data.status}
-              </div>
-            ) : params.value === "Pending" ? (
-              <div className="badge badge-pill badge-warning">
-                {params.data.status}
-              </div>
-            ) : null;
-          },
-        },
+        // {
+        //   headerName: "Status",
+        //   field: "status",
+        //   filter: true,
+        //   width: 150,
+        //   cellRendererFramework: (params) => {
+        //     return params.value === "Success" ? (
+        //       <div className="badge badge-pill badge-success">
+        //         {params.data.status}
+        //       </div>
+        //     ) : params.value === "Pending" ? (
+        //       <div className="badge badge-pill badge-warning">
+        //         {params.data.status}
+        //       </div>
+        //     ) : null;
+        //   },
+        // },
       {
         headerName: "Actions",
         field: "transactions",
@@ -176,21 +176,21 @@ class Deposit extends React.Component {
         cellRendererFramework: params => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
+              {/* <Eye
                 className="mr-50"
                 size="25px"
                 color="green"
-                // onClick={() => history.push("/apps/walletPage/depositForm")}
-              />
+                onClick={() => history.push("/apps/walletPage/depositForm")}
+              /> */}
               <PlusCircle
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                    history.push(`/app/walletPage/adddeposit/${params.data._id}`)}
-                  //  history.push(`/app/walletPage/adddeposit`)}
+                
               />
-              <Trash2
+              {/* <Trash2
                 size="25px"
                 color="red"
                 onClick={() => {
@@ -198,7 +198,7 @@ class Deposit extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                  }}
-              />
+              /> */}
             </div>
           );
         },
@@ -207,7 +207,7 @@ class Deposit extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://35.154.134.118/api/admin/getwallet").then((response) => {
+    axios.get("http://35.154.134.118/api/admin/getalldata").then((response) => {
       let rowData = response.data.data;
       // JSON.stringify(rowData);
       console.log(rowData);

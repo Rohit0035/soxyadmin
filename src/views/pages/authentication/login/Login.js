@@ -24,6 +24,7 @@ import LoginFirebase from "./LoginFirebase";
 import LoginJWT from "./LoginJWT";
 import { connect } from "react-redux";
 import axios from "axios";
+import swal from "sweetalert";
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +53,7 @@ class Login extends React.Component {
       console.log(response.data.user);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userData", JSON.stringify(response.data.user));
+      swal("Success!", " You clicked the button!", "success");
       history.push("/");
       
     })

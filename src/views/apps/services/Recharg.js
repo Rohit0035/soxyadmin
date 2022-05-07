@@ -105,29 +105,29 @@ class Recharg extends React.Component {
         },
       },
 
-      {
-        headerName: "Services",
-        field: "services",
-        // filter: true,
-        width: 125,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.services}</span>
-            </div>
-          );
-        },
-      },
+      // {
+      //   headerName: "Services",
+      //   field: "recharge_type",
+      //   // filter: true,
+      //   width: 125,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{params.data.recharge_type}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
 
       {
         headerName: "Operator",
-        field: "operator",
+        field: "biller_code",
         // filter: true,
         width: 125,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.operator}</span>
+              <span>{params.data.biller_code}</span>
             </div>
           );
         },
@@ -194,55 +194,54 @@ class Recharg extends React.Component {
       //       );
       //     },
       //   },
-        {
-          headerName: "Status",
-          field: "status",
-          // filter: true,
-          width: 150,
-          cellRendererFramework: (params) => {
-            return params.value === "Success" ? (
-              <div className="badge badge-pill badge-success">
-                {params.data.status}
-              </div>
-            ) : params.value === "Pending" ? (
-              <div className="badge badge-pill badge-warning">
-                {params.data.status}
-              </div>
-            ) : null;
-          },
-        },
-      {
-        headerName: "Actions",
-        field: "transactions",
-        width: 150,
-        cellRendererFramework: params => {
-          return (
-            <div className="actions cursor-pointer">
-              <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                // onClick={() => history.push("/apps/walletPage/depositForm")}
-              />
-              {/* <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
+        // {
+        //   headerName: "Status",
+        //   field: "status",
+        //   width: 150,
+        //   cellRendererFramework: (params) => {
+        //     return params.data.value === "Success" ? (
+        //       <div className="badge badge-pill badge-success">
+        //         {params.data.status}
+        //       </div>
+        //     ) : params.value === "Pending" ? (
+        //       <div className="badge badge-pill badge-warning">
+        //         {params.data.status}
+        //       </div>
+        //     ) : null;
+        //   },
+        // },
+      // {
+      //   headerName: "Actions",
+      //   field: "transactions",
+      //   width: 150,
+      //   cellRendererFramework: params => {
+      //     return (
+      //       <div className="actions cursor-pointer">
+      //         <Eye
+      //           className="mr-50"
+      //           size="25px"
+      //           color="green"
+                
+      //         />
+      //          <Edit
+      //           className="mr-50"
+      //           size="25px"
+      //           color="blue"
               
-              /> */}
-              <Trash2
-                size="25px"
-                color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                 }}
-              />
-            </div>
-          );
-        },
-      },
+      //         /> 
+      //         <Trash2
+      //           size="25px"
+      //           color="red"
+      //           onClick={() => {
+      //             let selectedData = this.gridApi.getSelectedRows();
+      //             this.runthisfunction(params.data._id);
+      //             this.gridApi.updateRowData({ remove: selectedData });
+      //            }}
+      //         />
+      //       </div>
+      //     );
+      //   },
+      // },
     ],
   };
 

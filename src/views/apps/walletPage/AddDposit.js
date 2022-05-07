@@ -22,9 +22,10 @@ export class AddDeposit extends Component {
     this.state = {
       firstname:"",
       walletId: "",
-     
-      amount:"",   
+      add_amount:"",   
       status: ""
+     
+     
       
     };
   }
@@ -45,6 +46,7 @@ export class AddDeposit extends Component {
   })
     .catch((error) => {
       console.log(error);
+      swal("Error!", " Wrong UserName", "error");
     });
   };
  
@@ -70,20 +72,18 @@ export class AddDeposit extends Component {
           <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
-                <Col lg="6" md="6">
-              
-                  <FormGroup>
-                  <Label>User Id</Label>
-                    
-                    <Input
-                    name="walletId"
-                      type="text"
-                      placeholder="User Id"
+                 {/* <Col lg="6" md="6">
+                    <FormGroup>
+                       <Label>User Id</Label>
+                      <Input
+                      name="walletId"
+                        type="text"
+                        placeholder="User Id"
 
-                    value={this.state.walletId}
-                    onChange={this.changeHandler}/>
-                  </FormGroup>
-                </Col>
+                      value={this.state.walletId}
+                      onChange={this.changeHandler}/>
+                    </FormGroup>
+                </Col>  */}
                 <Col lg="6" md="6">
                   <FormGroup>
                     <Label>User Name</Label>
@@ -124,9 +124,9 @@ export class AddDeposit extends Component {
                   <Input   
                     required 
                     type="text" 
-                    name="amount"
+                    name="add_amount"
                     placeholder="Enter Amount" 
-                    value={this.state.amount}
+                    value={this.state.add_amount}
                     onChange={this.changeHandler}/>
                     </FormGroup>
                 </Col>
@@ -143,7 +143,7 @@ export class AddDeposit extends Component {
                   </FormGroup>
                 </Col> */}
               
-                <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <FormGroup>
                     <Label className="mb-1">Status</Label>
                     <div
@@ -165,7 +165,7 @@ export class AddDeposit extends Component {
                       <span style={{ marginRight: "3px" }}>Inactive</span>
                     </div>
                   </FormGroup>
-                </Col>
+                </Col> */}
               </Row>
               <Row>
                 <Button.Ripple
