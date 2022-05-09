@@ -592,7 +592,7 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/walletPage/walletPage" component={walletPage} />
           <AppRoute path="/app/walletPage/deposit" component={deposit} />
           <AppRoute path="/app/walletPage/depositedform" component={DepositEdForm} />
-          <AppRoute path="/app/walletPage/adddeposit" component={AddDeposit} />
+          <AppRoute path="/app/walletPage/adddeposit/:id" component={AddDeposit} />
           <AppRoute
             path="/app/walletPage/depositForm"
             component={depositForm}

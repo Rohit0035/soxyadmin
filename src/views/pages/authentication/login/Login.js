@@ -53,7 +53,7 @@ class Login extends React.Component {
       console.log(response.data.user);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userData", JSON.stringify(response.data.user));
-      swal("Success!", " You clicked the button!", "success");
+      swal("Success!", " Welcome to Admin!", "success");
       history.push("/");
       
     })

@@ -21,9 +21,9 @@ export class AddDeposit extends Component {
     super(props);
     this.state = {
       firstname:"",
-      walletId: "",
+      walletId: "6262895e538b673eb440c134",
       add_amount:"",   
-      status: ""
+      status: "success"
      
      
       
@@ -36,7 +36,13 @@ export class AddDeposit extends Component {
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  changeHandlerNew = (e) => {
+    let value= parseInt(e.target.value)
+    this.setState({ add_amount:value });
+  };
   submitHandler = (e) => {
+    this.setState({ walletId: this.props.match.params.id });
+    
     e.preventDefault();
     axios.post("http://35.154.134.118/api/admin/addAmount", this.state)
     .then((response) => {
@@ -52,6 +58,7 @@ export class AddDeposit extends Component {
  
     
   render() {
+    console.log('searchParams',this.props.match.params.id)
     return (
       <div>
         <Card>
@@ -127,7 +134,7 @@ export class AddDeposit extends Component {
                     name="add_amount"
                     placeholder="Enter Amount" 
                     value={this.state.add_amount}
-                    onChange={this.changeHandler}/>
+                    onChange={this.changeHandlerNew}/>
                     </FormGroup>
                 </Col>
                  
