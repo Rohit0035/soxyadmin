@@ -93,13 +93,13 @@ class Recharg extends React.Component {
       // },
       {
         headerName: "Phone Number",
-        field: "walletId.customer.mobile",
+        field: "number",
         // filter: true,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.walletId?.customer?.mobile}</span>
+              <span>{params.data.number}</span>
             </div>
           );
         },

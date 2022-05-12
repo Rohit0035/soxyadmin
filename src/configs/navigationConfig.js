@@ -358,7 +358,16 @@ const navigationConfig = [
         icon: <FaUserEdit size={20} />,
         permissions: ["admin", "editor"],
         navLink: "/app/walletPage/Deposit",
+      }, 
+      {
+        id: "AdddepoAmount",
+        title: "ADD Amount",
+        type: "item",
+        icon: <FaUserEdit size={20} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/walletPage/AdddepoAmount",
       },
+    
       // {
       //   id: "Transaction",
       //   title: "Transaction",

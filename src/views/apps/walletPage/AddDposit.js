@@ -20,13 +20,11 @@ export class AddDeposit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname:"",
-      walletId: "6262895e538b673eb440c134",
+      // firstname:"",
+      walletId: "",//62790df9ff861d588269c999
       add_amount:"",   
-      status: "success"
-     
-     
-      
+      status: "success",
+      // userData:{},
     };
   }
  
@@ -42,23 +40,29 @@ export class AddDeposit extends Component {
   };
   submitHandler = (e) => {
     this.setState({ walletId: this.props.match.params.id });
-    
+
     e.preventDefault();
-    axios.post("http://35.154.134.118/api/admin/addAmount", this.state)
+ 
+       let payload = {
+         walletId :this.props.match.params.id,
+         add_amount : this.state.add_amount, //parseInt(this.state.number
+         status : this.state.status //parseInt(this.state.number
+       }
+    axios.post("http://35.154.134.118/api/admin/addAmount/",payload)
     .then((response) => {
     console.log(response);
-    swal("Successful!", "You clicked the button!", "success");
-    this.props.history.push("/app/walletPage/deposit");
+    swal("Successful!", "Money Added Successfully", "success");
+    this.props.history.push("/app/walletPage/adddepoAmount");
   })
     .catch((error) => {
       console.log(error);
-      swal("Error!", " Wrong UserName", "error");
+      swal("Error!", " Invalid", "error");
     });
   };
  
-    
+
   render() {
-    console.log('searchParams',this.props.match.params.id)
+    // console.log('searchParams',this.props.match.params.id)
     return (
       <div>
         <Card>
@@ -91,7 +95,7 @@ export class AddDeposit extends Component {
                       onChange={this.changeHandler}/>
                     </FormGroup>
                 </Col>  */}
-                <Col lg="6" md="6">
+                {/* <Col lg="6" md="6">
                   <FormGroup>
                     <Label>User Name</Label>
                     <Input
@@ -101,7 +105,7 @@ export class AddDeposit extends Component {
                     value={this.state.firstname}
                     onChange={this.changeHandler}/>
                   </FormGroup>
-                </Col>
+                </Col> */}
                 
                 {/* <Col lg="6" md="6">
                   <FormGroup>
@@ -160,16 +164,16 @@ export class AddDeposit extends Component {
                         style={{ marginRight: "3px" }}
                         type="radio"
                         name="status"
-                        value="Active"
+                        value="Success"
                       />
-                      <span style={{ marginRight: "20px" }}>Active</span>
+                      <span style={{ marginRight: "20px" }}>Success</span>
                       <input
                         style={{ marginRight: "3px" }}
                         type="radio"
                         name="status"
-                        value="Inactive"
+                        value="Pending"
                       />
-                      <span style={{ marginRight: "3px" }}>Inactive</span>
+                      <span style={{ marginRight: "3px" }}>Pending</span>
                     </div>
                   </FormGroup>
                 </Col> */}

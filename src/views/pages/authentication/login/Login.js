@@ -53,12 +53,13 @@ class Login extends React.Component {
       console.log(response.data.user);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userData", JSON.stringify(response.data.user));
-      swal("Success!", " Welcome to Admin!", "success");
+      swal("Success!", "Welcome Soxypay Admin", "success");
       history.push("/");
       
     })
     .catch((error) => {
       console.log(error.response);
+      swal("Error!", "Invalid Username and Password", "error");
     });
 };
 

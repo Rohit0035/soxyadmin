@@ -201,6 +201,8 @@ const sellerSubscription = lazy(() =>
 // Soxypay pages
 const walletPage = lazy(() => import("./views/apps/walletPage/WalletPage"));
 const deposit = lazy(() => import("./views/apps/walletPage/Deposit"));
+const adddepoAmount = lazy(() => import("./views/apps/walletPage/AdddepoAmount"));
+
 const depositForm = lazy(() => import("./views/apps/walletPage/DepositForm"));
 const DepositEdForm = lazy(() => import("./views/apps/walletPage/DepositEdForm"));
 const AddDeposit = lazy(() => import("./views/apps/walletPage/AddDposit"));
@@ -591,6 +593,8 @@ class AppRouter extends React.Component {
 
           <AppRoute path="/app/walletPage/walletPage" component={walletPage} />
           <AppRoute path="/app/walletPage/deposit" component={deposit} />
+          <AppRoute path="/app/walletPage/adddepoAmount" component={adddepoAmount} />
+         
           <AppRoute path="/app/walletPage/depositedform" component={DepositEdForm} />
           <AppRoute path="/app/walletPage/adddeposit/:id" component={AddDeposit} />
           <AppRoute
