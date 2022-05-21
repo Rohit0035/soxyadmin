@@ -13,6 +13,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye, Trash2 } from "react-feather";
 import axios from "axios";
+import moment from "moment";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -20,7 +21,7 @@ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
 class DthRecharg extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -32,28 +33,44 @@ class DthRecharg extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Name",
-        field: "firstname",
+        headerName: "Transaction ID",
+        field: "agent_id",
         width: 175,
-        filter: true,
-        checkboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        headerCheckboxSelection: true,
+        // filter: true,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+             <span>{params.data.agent_id}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Operators",
-        field: "operator",
+        headerName: "UserName",
+        field: "walletId.customer.firstname",
         width: 175,
-        filter: true,
-        checkboxSelection: true,
-        headerCheckboxSelectionFilteredOnly: true,
-        headerCheckboxSelection: true,
+        // filter: true,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.walletId?.customer?.firstname} {params.data.walletId?.customer?.lastname} </span>
+              
+            </div>
+          );
+        },
       },
       {
-        headerName: "Amount",
-        field: "zip",
-        filter: "agNumberColumnFilter",
+        headerName: "UserId",
+        field: "walletId.customer.customerId",
+        // filter: "true",
         width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.walletId?.customer?.customerId}</span>
+            </div>
+          );
+        },
       },
       //   {
       //     headerName: "Email",
@@ -63,111 +80,66 @@ class DthRecharg extends React.Component {
       //     pinned: window.innerWidth > 992 ? "left" : false,
       //   },
       {
-        headerName: "Date",
-        field: "Date",
-        filter: true,
-        width: 250,
-      },
-      //   {
-      //     headerName: "City",
-      //     field: "city",
-      //     filter: true,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "Nationality",
-      //     field: "country",
-      //     filter: true,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "State",
-      //     field: "state",
-      //     filter: true,
-      //     width: 125,
-      //   },
-      //   {
-      //     headerName: "Aadhar/Virtual Number",
-      //     field: "zip",
-      //     filter: "agNumberColumnFilter",
-      //     width: 140,
-      //   },
-      //   {
-      //     headerName: "Image ",
-      //     field: "image",
-      //     filter: true,
-      //     width: 120,
-      //     cellRendererFramework: params => {
-      //       return (
-      //         <div className="d-flex align-items-center cursor-pointer">
-      //           <img
-      //             className="rounded-circle"
-      //             src={params.data.image}
-      //             alt="user"
-      //             height="45"
-      //             width="90"
-      //           />
-      //         </div>
-      //       );
-      //     },
-      //   },
-      {
-        headerName: "Status",
-        field: "status",
-        filter: true,
+        headerName: "Phone Number",
+        field: "number",
+        // filter: true,
         width: 150,
-        cellRendererFramework: params => {
-          return params.value === "Active" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.status}
-            </div>
-          ) : params.value === "Inactive" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.status}
-            </div>
-          ) : null;
-        },
-      },
-      {
-        headerName: "Actions",
-        field: "transactions",
-        width: 150,
-        cellRendererFramework: params => {
+        cellRendererFramework: (params) => {
           return (
-            <div className="actions cursor-pointer">
-              <Eye
-                className="mr-50"
-                size={20}
-                // onClick={() =>
-                //   history.push(`/app/store/stores/viewStore/${params.data._id}`)
-                // }
-              />
-              {/*            
-      //         <Edit
-      //           className="mr-50"
-      //           size={20}
-      //           onClick={() => 
-      //           history.push(`/app/store/stores/editStore/${params.data._id}`)}
-      //         /> */}
-              <Trash2
-                size={20}
-                // onClick={() => {
-                //   let selectedData = this.gridApi.getSelectedRows();
-                //   this.runthisfunction(params.data._id);
-                //   this.gridApi.updateRowData({ remove: selectedData });
-                // }}
-              />
+            <div>
+              <span>{params.data.number}</span>
             </div>
           );
         },
       },
+      {
+        headerName: "Operator",
+        field: "biller_code",
+        // filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.biller_code}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "HashTag",
+        field: "amount",
+        // filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.amount}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Date",
+        field: "createdAt",
+        // filter: true,
+        width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{moment(this.state.data?.createdAt).format("ll")}</span>
+            </div>
+          );
+        },
+      },
+    
     ],
   };
 
   componentDidMount() {
-    axios.get("/api/aggrid/data").then(response => {
+    axios.get(`http://35.154.134.118/api/admin/Dth_listadmin`).then((response) => {
       let rowData = response.data.data;
-      JSON.stringify(rowData);
+      // JSON.stringify(rowData);
+      console.log(rowData);
       this.setState({ rowData });
     });
   }
@@ -201,9 +173,9 @@ class DthRecharg extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="DTH Table"
+          breadCrumbTitle="DTH Recharge List"
           //   breadCrumbParent="Forms & Tables"
-          breadCrumbActive="DTH Table"
+          breadCrumbActive="DTH Recharge List"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
