@@ -147,15 +147,28 @@ class Recharg extends React.Component {
         },
       },
 
+      // {
+      //   headerName: "Date",
+      //   field: "createdAt",
+      //   // filter: true,
+      //   width: 125,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div>
+      //         <span>{moment(this.state.data?.createdAt).format("ll")}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
-        headerName: "Date",
+        headerName: " Date",
         field: "createdAt",
-        // filter: true,
-        width: 125,
+        filter: true,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
-            <div>
-              <span>{moment(this.state.data?.createdAt).format("ll")}</span>
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{moment(params.data.createdAt).format("ll")}</span>
             </div>
           );
         },
@@ -248,7 +261,7 @@ class Recharg extends React.Component {
   componentDidMount() {
     //  let { id } = this.props.match.params;
 
-    axios.get(`http://35.154.134.118/api/admin/gettransaction`).then((response) => {
+    axios.get(`http://35.154.134.118/api/admin/mobile_rechargelist`).then((response) => {
       let rowData = response.data.data;
       // JSON.stringify(rowData);
       console.log(rowData);

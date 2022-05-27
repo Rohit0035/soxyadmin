@@ -107,7 +107,7 @@ class Deposit extends React.Component {
       },
      
       {
-        headerName: "Request Amount",
+        headerName: "Request Crypto  Amount",
         field: "reqamount",
         filter: true,
         width: 125,

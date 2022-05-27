@@ -93,7 +93,7 @@ class AdddepoAmount extends React.Component {
       },
       
       {
-        headerName: "Requst Amount",
+        headerName: "Requst Crypto  Amount",
         field: "reqamount",
         filter: true,
         width: 125,
@@ -119,7 +119,7 @@ class AdddepoAmount extends React.Component {
         },
       },
       {
-        headerName: "Add Amount",
+        headerName: "Add Crypto  Amount",
         field: "add_amount",
         filter: true,
         width: 125,

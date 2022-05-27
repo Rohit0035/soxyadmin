@@ -126,7 +126,7 @@ class Electricity extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{moment(this.state.data?.createdAt).format("ll")}</span>
+              <span>{moment(params.data.createdAt).format("ll")}</span>
             </div>
           );
         },

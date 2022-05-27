@@ -130,7 +130,7 @@ export class AddDeposit extends Component {
                 
                 <Col lg="6" md="6" sm="6" className="mb-2">
                 <FormGroup>
-                <Label>HashTag (Amount)</Label>
+                <Label>Crypto Deposit Amount</Label>
 
                   <Input   
                     required 
