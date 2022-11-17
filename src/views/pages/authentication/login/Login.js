@@ -44,7 +44,7 @@ class Login extends React.Component {
     e.preventDefault();
 
     axios
-    .post("http://35.154.134.118/api/admin/adminlogin", this.state,{
+    .post("http://44.205.32.29:8000/admin/sellerlogin", this.state,{
       headers: {
         "Content-Type":"application/json"
       },

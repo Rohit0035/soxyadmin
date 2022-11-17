@@ -137,7 +137,7 @@ class Electricity extends React.Component {
   };
 
   componentDidMount() {
-    axios.get(`http://35.154.134.118/api/admin/elec_bill_listadmin`).then((response) => {
+    axios.get(`http://44.205.32.29:8000/admin/elec_bill_listadmin`).then((response) => {
       let rowData = response.data.data;
       // JSON.stringify(rowData);
       console.log(rowData);

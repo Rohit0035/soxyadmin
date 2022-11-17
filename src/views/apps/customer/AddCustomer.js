@@ -42,7 +42,7 @@
 //     e.preventDefault();
 
 
-//     axios.post("http://35.154.134.118/api/user/customersignup", this.state)
+//     axios.post("http://44.205.32.29:8000/user/customersignup", this.state)
 //       .then((response) => {
 //         console.log(response);  
 //         alert("Customer Added Successful")

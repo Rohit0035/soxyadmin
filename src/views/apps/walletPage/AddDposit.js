@@ -48,7 +48,7 @@ export class AddDeposit extends Component {
          add_amount : this.state.add_amount, //parseInt(this.state.number
          status : this.state.status //parseInt(this.state.number
        }
-    axios.post("http://35.154.134.118/api/admin/addAmount/",payload)
+    axios.post("http://44.205.32.29:8000/admin/addAmount/",payload)
     .then((response) => {
     console.log(response);
     swal("Successful!", "Money Added Successfully", "success");

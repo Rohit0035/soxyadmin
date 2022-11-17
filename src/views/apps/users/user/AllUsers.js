@@ -203,7 +203,7 @@ class AllUsers extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await 
-    axios.get(`http://35.154.134.118/api/user/deleteuser/${id}`)
+    axios.get(`http://44.205.32.29:8000/user/deleteuser/${id}`)
       .then((response) => {
         console.log(response);
       });

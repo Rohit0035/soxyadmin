@@ -74,7 +74,7 @@ componentDidMount() {
         console.log(key);
       }
     axiosConfig
-    .post("http://35.154.134.118/api/admin/add_specialoffer", data)
+    .post("http://44.205.32.29:8000/admin/add_specialoffer", data)
     .then((response) => {
       console.log(response.data);
       this.props.history.push("/app/offerAndCoupon/specialOffer/specialOfferList");

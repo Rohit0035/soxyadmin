@@ -74,7 +74,7 @@ import { history } from "../../../history";
       console.log(key);
     }
     axios
-      .post("http://35.154.134.118/api/admin/editadmin/61efdb313c8b8db3a3488d25", data)
+      .post("http://44.205.32.29:8000/admin/editadmin/61efdb313c8b8db3a3488d25", data)
       .then((response) => {
         console.log(response.data);
       })

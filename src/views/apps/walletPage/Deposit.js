@@ -223,7 +223,7 @@ class Deposit extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://35.154.134.118:8000/admin/getwallet").then((response) => {
+    axios.get("http://44.205.32.29:8000/admin/getwallet").then((response) => {
       let rowData = response.data.data;
       // JSON.stringify(rowData);
       console.log(rowData);

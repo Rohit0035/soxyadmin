@@ -261,7 +261,7 @@ class Recharg extends React.Component {
   componentDidMount() {
     //  let { id } = this.props.match.params;
 
-    axios.get(`http://35.154.134.118/api/admin/mobile_rechargelist`).then((response) => {
+    axios.get(`http://44.205.32.29:8000/admin/mobile_rechargelist`).then((response) => {
       let rowData = response.data.data;
       // JSON.stringify(rowData);
       console.log(rowData);
